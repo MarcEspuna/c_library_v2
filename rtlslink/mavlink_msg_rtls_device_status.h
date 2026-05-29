@@ -7,9 +7,9 @@
 typedef struct __mavlink_rtls_device_status_t {
  uint32_t time_boot_ms; /*< [ms] Timestamp since boot.*/
  uint32_t flags; /*<  Status flags.*/
- int32_t dynamic_anchor_x_mm[4]; /*< [mm] Dynamic anchor X positions.*/
- int32_t dynamic_anchor_y_mm[4]; /*< [mm] Dynamic anchor Y positions.*/
- int32_t dynamic_anchor_z_mm[4]; /*< [mm] Dynamic anchor Z positions.*/
+ int32_t dynamic_anchor_x_mm[8]; /*< [mm] Dynamic anchor X positions.*/
+ int32_t dynamic_anchor_y_mm[8]; /*< [mm] Dynamic anchor Y positions.*/
+ int32_t dynamic_anchor_z_mm[8]; /*< [mm] Dynamic anchor Z positions.*/
  uint16_t avg_rate_chz; /*< [cHz] Average position update rate.*/
  uint16_t min_rate_chz; /*< [cHz] Minimum position update rate.*/
  uint16_t max_rate_chz; /*< [cHz] Maximum position update rate.*/
@@ -19,7 +19,7 @@ typedef struct __mavlink_rtls_device_status_t {
  uint8_t mavlink_target_system; /*<  Configured ArduPilot target system id.*/
  uint8_t log_level; /*<  Compiled log level.*/
  uint8_t dynamic_anchor_count; /*<  Number of valid dynamic anchor entries.*/
- uint8_t dynamic_anchor_id[4]; /*<  Dynamic anchor IDs.*/
+ uint8_t dynamic_anchor_id[8]; /*<  Dynamic anchor IDs.*/
  uint8_t ip[4]; /*<  Device IPv4 address.*/
  uint8_t mac[6]; /*<  WiFi MAC address.*/
  char device_type[16]; /*<  Device type string.*/
@@ -27,18 +27,18 @@ typedef struct __mavlink_rtls_device_status_t {
  char firmware_version[16]; /*<  Firmware version string.*/
 } mavlink_rtls_device_status_t;
 
-#define MAVLINK_MSG_ID_RTLS_DEVICE_STATUS_LEN 123
-#define MAVLINK_MSG_ID_RTLS_DEVICE_STATUS_MIN_LEN 123
-#define MAVLINK_MSG_ID_52000_LEN 123
-#define MAVLINK_MSG_ID_52000_MIN_LEN 123
+#define MAVLINK_MSG_ID_RTLS_DEVICE_STATUS_LEN 175
+#define MAVLINK_MSG_ID_RTLS_DEVICE_STATUS_MIN_LEN 175
+#define MAVLINK_MSG_ID_52000_LEN 175
+#define MAVLINK_MSG_ID_52000_MIN_LEN 175
 
-#define MAVLINK_MSG_ID_RTLS_DEVICE_STATUS_CRC 59
-#define MAVLINK_MSG_ID_52000_CRC 59
+#define MAVLINK_MSG_ID_RTLS_DEVICE_STATUS_CRC 247
+#define MAVLINK_MSG_ID_52000_CRC 247
 
-#define MAVLINK_MSG_RTLS_DEVICE_STATUS_FIELD_DYNAMIC_ANCHOR_X_MM_LEN 4
-#define MAVLINK_MSG_RTLS_DEVICE_STATUS_FIELD_DYNAMIC_ANCHOR_Y_MM_LEN 4
-#define MAVLINK_MSG_RTLS_DEVICE_STATUS_FIELD_DYNAMIC_ANCHOR_Z_MM_LEN 4
-#define MAVLINK_MSG_RTLS_DEVICE_STATUS_FIELD_DYNAMIC_ANCHOR_ID_LEN 4
+#define MAVLINK_MSG_RTLS_DEVICE_STATUS_FIELD_DYNAMIC_ANCHOR_X_MM_LEN 8
+#define MAVLINK_MSG_RTLS_DEVICE_STATUS_FIELD_DYNAMIC_ANCHOR_Y_MM_LEN 8
+#define MAVLINK_MSG_RTLS_DEVICE_STATUS_FIELD_DYNAMIC_ANCHOR_Z_MM_LEN 8
+#define MAVLINK_MSG_RTLS_DEVICE_STATUS_FIELD_DYNAMIC_ANCHOR_ID_LEN 8
 #define MAVLINK_MSG_RTLS_DEVICE_STATUS_FIELD_IP_LEN 4
 #define MAVLINK_MSG_RTLS_DEVICE_STATUS_FIELD_MAC_LEN 6
 #define MAVLINK_MSG_RTLS_DEVICE_STATUS_FIELD_DEVICE_TYPE_LEN 16
@@ -52,24 +52,24 @@ typedef struct __mavlink_rtls_device_status_t {
     20, \
     {  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_rtls_device_status_t, time_boot_ms) }, \
          { "flags", NULL, MAVLINK_TYPE_UINT32_T, 0, 4, offsetof(mavlink_rtls_device_status_t, flags) }, \
-         { "avg_rate_chz", NULL, MAVLINK_TYPE_UINT16_T, 0, 56, offsetof(mavlink_rtls_device_status_t, avg_rate_chz) }, \
-         { "min_rate_chz", NULL, MAVLINK_TYPE_UINT16_T, 0, 58, offsetof(mavlink_rtls_device_status_t, min_rate_chz) }, \
-         { "max_rate_chz", NULL, MAVLINK_TYPE_UINT16_T, 0, 60, offsetof(mavlink_rtls_device_status_t, max_rate_chz) }, \
-         { "log_udp_port", NULL, MAVLINK_TYPE_UINT16_T, 0, 62, offsetof(mavlink_rtls_device_status_t, log_udp_port) }, \
-         { "role", NULL, MAVLINK_TYPE_UINT8_T, 0, 64, offsetof(mavlink_rtls_device_status_t, role) }, \
-         { "anchors_seen", NULL, MAVLINK_TYPE_UINT8_T, 0, 65, offsetof(mavlink_rtls_device_status_t, anchors_seen) }, \
-         { "mavlink_target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 66, offsetof(mavlink_rtls_device_status_t, mavlink_target_system) }, \
-         { "log_level", NULL, MAVLINK_TYPE_UINT8_T, 0, 67, offsetof(mavlink_rtls_device_status_t, log_level) }, \
-         { "dynamic_anchor_count", NULL, MAVLINK_TYPE_UINT8_T, 0, 68, offsetof(mavlink_rtls_device_status_t, dynamic_anchor_count) }, \
-         { "dynamic_anchor_id", NULL, MAVLINK_TYPE_UINT8_T, 4, 69, offsetof(mavlink_rtls_device_status_t, dynamic_anchor_id) }, \
-         { "dynamic_anchor_x_mm", NULL, MAVLINK_TYPE_INT32_T, 4, 8, offsetof(mavlink_rtls_device_status_t, dynamic_anchor_x_mm) }, \
-         { "dynamic_anchor_y_mm", NULL, MAVLINK_TYPE_INT32_T, 4, 24, offsetof(mavlink_rtls_device_status_t, dynamic_anchor_y_mm) }, \
-         { "dynamic_anchor_z_mm", NULL, MAVLINK_TYPE_INT32_T, 4, 40, offsetof(mavlink_rtls_device_status_t, dynamic_anchor_z_mm) }, \
-         { "ip", NULL, MAVLINK_TYPE_UINT8_T, 4, 73, offsetof(mavlink_rtls_device_status_t, ip) }, \
-         { "mac", NULL, MAVLINK_TYPE_UINT8_T, 6, 77, offsetof(mavlink_rtls_device_status_t, mac) }, \
-         { "device_type", NULL, MAVLINK_TYPE_CHAR, 16, 83, offsetof(mavlink_rtls_device_status_t, device_type) }, \
-         { "short_addr", NULL, MAVLINK_TYPE_CHAR, 8, 99, offsetof(mavlink_rtls_device_status_t, short_addr) }, \
-         { "firmware_version", NULL, MAVLINK_TYPE_CHAR, 16, 107, offsetof(mavlink_rtls_device_status_t, firmware_version) }, \
+         { "avg_rate_chz", NULL, MAVLINK_TYPE_UINT16_T, 0, 104, offsetof(mavlink_rtls_device_status_t, avg_rate_chz) }, \
+         { "min_rate_chz", NULL, MAVLINK_TYPE_UINT16_T, 0, 106, offsetof(mavlink_rtls_device_status_t, min_rate_chz) }, \
+         { "max_rate_chz", NULL, MAVLINK_TYPE_UINT16_T, 0, 108, offsetof(mavlink_rtls_device_status_t, max_rate_chz) }, \
+         { "log_udp_port", NULL, MAVLINK_TYPE_UINT16_T, 0, 110, offsetof(mavlink_rtls_device_status_t, log_udp_port) }, \
+         { "role", NULL, MAVLINK_TYPE_UINT8_T, 0, 112, offsetof(mavlink_rtls_device_status_t, role) }, \
+         { "anchors_seen", NULL, MAVLINK_TYPE_UINT8_T, 0, 113, offsetof(mavlink_rtls_device_status_t, anchors_seen) }, \
+         { "mavlink_target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 114, offsetof(mavlink_rtls_device_status_t, mavlink_target_system) }, \
+         { "log_level", NULL, MAVLINK_TYPE_UINT8_T, 0, 115, offsetof(mavlink_rtls_device_status_t, log_level) }, \
+         { "dynamic_anchor_count", NULL, MAVLINK_TYPE_UINT8_T, 0, 116, offsetof(mavlink_rtls_device_status_t, dynamic_anchor_count) }, \
+         { "dynamic_anchor_id", NULL, MAVLINK_TYPE_UINT8_T, 8, 117, offsetof(mavlink_rtls_device_status_t, dynamic_anchor_id) }, \
+         { "dynamic_anchor_x_mm", NULL, MAVLINK_TYPE_INT32_T, 8, 8, offsetof(mavlink_rtls_device_status_t, dynamic_anchor_x_mm) }, \
+         { "dynamic_anchor_y_mm", NULL, MAVLINK_TYPE_INT32_T, 8, 40, offsetof(mavlink_rtls_device_status_t, dynamic_anchor_y_mm) }, \
+         { "dynamic_anchor_z_mm", NULL, MAVLINK_TYPE_INT32_T, 8, 72, offsetof(mavlink_rtls_device_status_t, dynamic_anchor_z_mm) }, \
+         { "ip", NULL, MAVLINK_TYPE_UINT8_T, 4, 125, offsetof(mavlink_rtls_device_status_t, ip) }, \
+         { "mac", NULL, MAVLINK_TYPE_UINT8_T, 6, 129, offsetof(mavlink_rtls_device_status_t, mac) }, \
+         { "device_type", NULL, MAVLINK_TYPE_CHAR, 16, 135, offsetof(mavlink_rtls_device_status_t, device_type) }, \
+         { "short_addr", NULL, MAVLINK_TYPE_CHAR, 8, 151, offsetof(mavlink_rtls_device_status_t, short_addr) }, \
+         { "firmware_version", NULL, MAVLINK_TYPE_CHAR, 16, 159, offsetof(mavlink_rtls_device_status_t, firmware_version) }, \
          } \
 }
 #else
@@ -78,24 +78,24 @@ typedef struct __mavlink_rtls_device_status_t {
     20, \
     {  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_rtls_device_status_t, time_boot_ms) }, \
          { "flags", NULL, MAVLINK_TYPE_UINT32_T, 0, 4, offsetof(mavlink_rtls_device_status_t, flags) }, \
-         { "avg_rate_chz", NULL, MAVLINK_TYPE_UINT16_T, 0, 56, offsetof(mavlink_rtls_device_status_t, avg_rate_chz) }, \
-         { "min_rate_chz", NULL, MAVLINK_TYPE_UINT16_T, 0, 58, offsetof(mavlink_rtls_device_status_t, min_rate_chz) }, \
-         { "max_rate_chz", NULL, MAVLINK_TYPE_UINT16_T, 0, 60, offsetof(mavlink_rtls_device_status_t, max_rate_chz) }, \
-         { "log_udp_port", NULL, MAVLINK_TYPE_UINT16_T, 0, 62, offsetof(mavlink_rtls_device_status_t, log_udp_port) }, \
-         { "role", NULL, MAVLINK_TYPE_UINT8_T, 0, 64, offsetof(mavlink_rtls_device_status_t, role) }, \
-         { "anchors_seen", NULL, MAVLINK_TYPE_UINT8_T, 0, 65, offsetof(mavlink_rtls_device_status_t, anchors_seen) }, \
-         { "mavlink_target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 66, offsetof(mavlink_rtls_device_status_t, mavlink_target_system) }, \
-         { "log_level", NULL, MAVLINK_TYPE_UINT8_T, 0, 67, offsetof(mavlink_rtls_device_status_t, log_level) }, \
-         { "dynamic_anchor_count", NULL, MAVLINK_TYPE_UINT8_T, 0, 68, offsetof(mavlink_rtls_device_status_t, dynamic_anchor_count) }, \
-         { "dynamic_anchor_id", NULL, MAVLINK_TYPE_UINT8_T, 4, 69, offsetof(mavlink_rtls_device_status_t, dynamic_anchor_id) }, \
-         { "dynamic_anchor_x_mm", NULL, MAVLINK_TYPE_INT32_T, 4, 8, offsetof(mavlink_rtls_device_status_t, dynamic_anchor_x_mm) }, \
-         { "dynamic_anchor_y_mm", NULL, MAVLINK_TYPE_INT32_T, 4, 24, offsetof(mavlink_rtls_device_status_t, dynamic_anchor_y_mm) }, \
-         { "dynamic_anchor_z_mm", NULL, MAVLINK_TYPE_INT32_T, 4, 40, offsetof(mavlink_rtls_device_status_t, dynamic_anchor_z_mm) }, \
-         { "ip", NULL, MAVLINK_TYPE_UINT8_T, 4, 73, offsetof(mavlink_rtls_device_status_t, ip) }, \
-         { "mac", NULL, MAVLINK_TYPE_UINT8_T, 6, 77, offsetof(mavlink_rtls_device_status_t, mac) }, \
-         { "device_type", NULL, MAVLINK_TYPE_CHAR, 16, 83, offsetof(mavlink_rtls_device_status_t, device_type) }, \
-         { "short_addr", NULL, MAVLINK_TYPE_CHAR, 8, 99, offsetof(mavlink_rtls_device_status_t, short_addr) }, \
-         { "firmware_version", NULL, MAVLINK_TYPE_CHAR, 16, 107, offsetof(mavlink_rtls_device_status_t, firmware_version) }, \
+         { "avg_rate_chz", NULL, MAVLINK_TYPE_UINT16_T, 0, 104, offsetof(mavlink_rtls_device_status_t, avg_rate_chz) }, \
+         { "min_rate_chz", NULL, MAVLINK_TYPE_UINT16_T, 0, 106, offsetof(mavlink_rtls_device_status_t, min_rate_chz) }, \
+         { "max_rate_chz", NULL, MAVLINK_TYPE_UINT16_T, 0, 108, offsetof(mavlink_rtls_device_status_t, max_rate_chz) }, \
+         { "log_udp_port", NULL, MAVLINK_TYPE_UINT16_T, 0, 110, offsetof(mavlink_rtls_device_status_t, log_udp_port) }, \
+         { "role", NULL, MAVLINK_TYPE_UINT8_T, 0, 112, offsetof(mavlink_rtls_device_status_t, role) }, \
+         { "anchors_seen", NULL, MAVLINK_TYPE_UINT8_T, 0, 113, offsetof(mavlink_rtls_device_status_t, anchors_seen) }, \
+         { "mavlink_target_system", NULL, MAVLINK_TYPE_UINT8_T, 0, 114, offsetof(mavlink_rtls_device_status_t, mavlink_target_system) }, \
+         { "log_level", NULL, MAVLINK_TYPE_UINT8_T, 0, 115, offsetof(mavlink_rtls_device_status_t, log_level) }, \
+         { "dynamic_anchor_count", NULL, MAVLINK_TYPE_UINT8_T, 0, 116, offsetof(mavlink_rtls_device_status_t, dynamic_anchor_count) }, \
+         { "dynamic_anchor_id", NULL, MAVLINK_TYPE_UINT8_T, 8, 117, offsetof(mavlink_rtls_device_status_t, dynamic_anchor_id) }, \
+         { "dynamic_anchor_x_mm", NULL, MAVLINK_TYPE_INT32_T, 8, 8, offsetof(mavlink_rtls_device_status_t, dynamic_anchor_x_mm) }, \
+         { "dynamic_anchor_y_mm", NULL, MAVLINK_TYPE_INT32_T, 8, 40, offsetof(mavlink_rtls_device_status_t, dynamic_anchor_y_mm) }, \
+         { "dynamic_anchor_z_mm", NULL, MAVLINK_TYPE_INT32_T, 8, 72, offsetof(mavlink_rtls_device_status_t, dynamic_anchor_z_mm) }, \
+         { "ip", NULL, MAVLINK_TYPE_UINT8_T, 4, 125, offsetof(mavlink_rtls_device_status_t, ip) }, \
+         { "mac", NULL, MAVLINK_TYPE_UINT8_T, 6, 129, offsetof(mavlink_rtls_device_status_t, mac) }, \
+         { "device_type", NULL, MAVLINK_TYPE_CHAR, 16, 135, offsetof(mavlink_rtls_device_status_t, device_type) }, \
+         { "short_addr", NULL, MAVLINK_TYPE_CHAR, 8, 151, offsetof(mavlink_rtls_device_status_t, short_addr) }, \
+         { "firmware_version", NULL, MAVLINK_TYPE_CHAR, 16, 159, offsetof(mavlink_rtls_device_status_t, firmware_version) }, \
          } \
 }
 #endif
@@ -135,24 +135,24 @@ static inline uint16_t mavlink_msg_rtls_device_status_pack(uint8_t system_id, ui
     char buf[MAVLINK_MSG_ID_RTLS_DEVICE_STATUS_LEN];
     _mav_put_uint32_t(buf, 0, time_boot_ms);
     _mav_put_uint32_t(buf, 4, flags);
-    _mav_put_uint16_t(buf, 56, avg_rate_chz);
-    _mav_put_uint16_t(buf, 58, min_rate_chz);
-    _mav_put_uint16_t(buf, 60, max_rate_chz);
-    _mav_put_uint16_t(buf, 62, log_udp_port);
-    _mav_put_uint8_t(buf, 64, role);
-    _mav_put_uint8_t(buf, 65, anchors_seen);
-    _mav_put_uint8_t(buf, 66, mavlink_target_system);
-    _mav_put_uint8_t(buf, 67, log_level);
-    _mav_put_uint8_t(buf, 68, dynamic_anchor_count);
-    _mav_put_int32_t_array(buf, 8, dynamic_anchor_x_mm, 4);
-    _mav_put_int32_t_array(buf, 24, dynamic_anchor_y_mm, 4);
-    _mav_put_int32_t_array(buf, 40, dynamic_anchor_z_mm, 4);
-    _mav_put_uint8_t_array(buf, 69, dynamic_anchor_id, 4);
-    _mav_put_uint8_t_array(buf, 73, ip, 4);
-    _mav_put_uint8_t_array(buf, 77, mac, 6);
-    _mav_put_char_array(buf, 83, device_type, 16);
-    _mav_put_char_array(buf, 99, short_addr, 8);
-    _mav_put_char_array(buf, 107, firmware_version, 16);
+    _mav_put_uint16_t(buf, 104, avg_rate_chz);
+    _mav_put_uint16_t(buf, 106, min_rate_chz);
+    _mav_put_uint16_t(buf, 108, max_rate_chz);
+    _mav_put_uint16_t(buf, 110, log_udp_port);
+    _mav_put_uint8_t(buf, 112, role);
+    _mav_put_uint8_t(buf, 113, anchors_seen);
+    _mav_put_uint8_t(buf, 114, mavlink_target_system);
+    _mav_put_uint8_t(buf, 115, log_level);
+    _mav_put_uint8_t(buf, 116, dynamic_anchor_count);
+    _mav_put_int32_t_array(buf, 8, dynamic_anchor_x_mm, 8);
+    _mav_put_int32_t_array(buf, 40, dynamic_anchor_y_mm, 8);
+    _mav_put_int32_t_array(buf, 72, dynamic_anchor_z_mm, 8);
+    _mav_put_uint8_t_array(buf, 117, dynamic_anchor_id, 8);
+    _mav_put_uint8_t_array(buf, 125, ip, 4);
+    _mav_put_uint8_t_array(buf, 129, mac, 6);
+    _mav_put_char_array(buf, 135, device_type, 16);
+    _mav_put_char_array(buf, 151, short_addr, 8);
+    _mav_put_char_array(buf, 159, firmware_version, 16);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_RTLS_DEVICE_STATUS_LEN);
 #else
     mavlink_rtls_device_status_t packet;
@@ -167,10 +167,10 @@ static inline uint16_t mavlink_msg_rtls_device_status_pack(uint8_t system_id, ui
     packet.mavlink_target_system = mavlink_target_system;
     packet.log_level = log_level;
     packet.dynamic_anchor_count = dynamic_anchor_count;
-    mav_array_memcpy(packet.dynamic_anchor_x_mm, dynamic_anchor_x_mm, sizeof(int32_t)*4);
-    mav_array_memcpy(packet.dynamic_anchor_y_mm, dynamic_anchor_y_mm, sizeof(int32_t)*4);
-    mav_array_memcpy(packet.dynamic_anchor_z_mm, dynamic_anchor_z_mm, sizeof(int32_t)*4);
-    mav_array_memcpy(packet.dynamic_anchor_id, dynamic_anchor_id, 4);
+    mav_array_memcpy(packet.dynamic_anchor_x_mm, dynamic_anchor_x_mm, sizeof(int32_t)*8);
+    mav_array_memcpy(packet.dynamic_anchor_y_mm, dynamic_anchor_y_mm, sizeof(int32_t)*8);
+    mav_array_memcpy(packet.dynamic_anchor_z_mm, dynamic_anchor_z_mm, sizeof(int32_t)*8);
+    mav_array_memcpy(packet.dynamic_anchor_id, dynamic_anchor_id, 8);
     mav_array_memcpy(packet.ip, ip, 4);
     mav_array_memcpy(packet.mac, mac, 6);
     mav_array_memcpy(packet.device_type, device_type, 16);
@@ -219,24 +219,24 @@ static inline uint16_t mavlink_msg_rtls_device_status_pack_status(uint8_t system
     char buf[MAVLINK_MSG_ID_RTLS_DEVICE_STATUS_LEN];
     _mav_put_uint32_t(buf, 0, time_boot_ms);
     _mav_put_uint32_t(buf, 4, flags);
-    _mav_put_uint16_t(buf, 56, avg_rate_chz);
-    _mav_put_uint16_t(buf, 58, min_rate_chz);
-    _mav_put_uint16_t(buf, 60, max_rate_chz);
-    _mav_put_uint16_t(buf, 62, log_udp_port);
-    _mav_put_uint8_t(buf, 64, role);
-    _mav_put_uint8_t(buf, 65, anchors_seen);
-    _mav_put_uint8_t(buf, 66, mavlink_target_system);
-    _mav_put_uint8_t(buf, 67, log_level);
-    _mav_put_uint8_t(buf, 68, dynamic_anchor_count);
-    _mav_put_int32_t_array(buf, 8, dynamic_anchor_x_mm, 4);
-    _mav_put_int32_t_array(buf, 24, dynamic_anchor_y_mm, 4);
-    _mav_put_int32_t_array(buf, 40, dynamic_anchor_z_mm, 4);
-    _mav_put_uint8_t_array(buf, 69, dynamic_anchor_id, 4);
-    _mav_put_uint8_t_array(buf, 73, ip, 4);
-    _mav_put_uint8_t_array(buf, 77, mac, 6);
-    _mav_put_char_array(buf, 83, device_type, 16);
-    _mav_put_char_array(buf, 99, short_addr, 8);
-    _mav_put_char_array(buf, 107, firmware_version, 16);
+    _mav_put_uint16_t(buf, 104, avg_rate_chz);
+    _mav_put_uint16_t(buf, 106, min_rate_chz);
+    _mav_put_uint16_t(buf, 108, max_rate_chz);
+    _mav_put_uint16_t(buf, 110, log_udp_port);
+    _mav_put_uint8_t(buf, 112, role);
+    _mav_put_uint8_t(buf, 113, anchors_seen);
+    _mav_put_uint8_t(buf, 114, mavlink_target_system);
+    _mav_put_uint8_t(buf, 115, log_level);
+    _mav_put_uint8_t(buf, 116, dynamic_anchor_count);
+    _mav_put_int32_t_array(buf, 8, dynamic_anchor_x_mm, 8);
+    _mav_put_int32_t_array(buf, 40, dynamic_anchor_y_mm, 8);
+    _mav_put_int32_t_array(buf, 72, dynamic_anchor_z_mm, 8);
+    _mav_put_uint8_t_array(buf, 117, dynamic_anchor_id, 8);
+    _mav_put_uint8_t_array(buf, 125, ip, 4);
+    _mav_put_uint8_t_array(buf, 129, mac, 6);
+    _mav_put_char_array(buf, 135, device_type, 16);
+    _mav_put_char_array(buf, 151, short_addr, 8);
+    _mav_put_char_array(buf, 159, firmware_version, 16);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_RTLS_DEVICE_STATUS_LEN);
 #else
     mavlink_rtls_device_status_t packet;
@@ -251,10 +251,10 @@ static inline uint16_t mavlink_msg_rtls_device_status_pack_status(uint8_t system
     packet.mavlink_target_system = mavlink_target_system;
     packet.log_level = log_level;
     packet.dynamic_anchor_count = dynamic_anchor_count;
-    mav_array_memcpy(packet.dynamic_anchor_x_mm, dynamic_anchor_x_mm, sizeof(int32_t)*4);
-    mav_array_memcpy(packet.dynamic_anchor_y_mm, dynamic_anchor_y_mm, sizeof(int32_t)*4);
-    mav_array_memcpy(packet.dynamic_anchor_z_mm, dynamic_anchor_z_mm, sizeof(int32_t)*4);
-    mav_array_memcpy(packet.dynamic_anchor_id, dynamic_anchor_id, sizeof(uint8_t)*4);
+    mav_array_memcpy(packet.dynamic_anchor_x_mm, dynamic_anchor_x_mm, sizeof(int32_t)*8);
+    mav_array_memcpy(packet.dynamic_anchor_y_mm, dynamic_anchor_y_mm, sizeof(int32_t)*8);
+    mav_array_memcpy(packet.dynamic_anchor_z_mm, dynamic_anchor_z_mm, sizeof(int32_t)*8);
+    mav_array_memcpy(packet.dynamic_anchor_id, dynamic_anchor_id, sizeof(uint8_t)*8);
     mav_array_memcpy(packet.ip, ip, sizeof(uint8_t)*4);
     mav_array_memcpy(packet.mac, mac, sizeof(uint8_t)*6);
     mav_array_memcpy(packet.device_type, device_type, sizeof(char)*16);
@@ -307,24 +307,24 @@ static inline uint16_t mavlink_msg_rtls_device_status_pack_chan(uint8_t system_i
     char buf[MAVLINK_MSG_ID_RTLS_DEVICE_STATUS_LEN];
     _mav_put_uint32_t(buf, 0, time_boot_ms);
     _mav_put_uint32_t(buf, 4, flags);
-    _mav_put_uint16_t(buf, 56, avg_rate_chz);
-    _mav_put_uint16_t(buf, 58, min_rate_chz);
-    _mav_put_uint16_t(buf, 60, max_rate_chz);
-    _mav_put_uint16_t(buf, 62, log_udp_port);
-    _mav_put_uint8_t(buf, 64, role);
-    _mav_put_uint8_t(buf, 65, anchors_seen);
-    _mav_put_uint8_t(buf, 66, mavlink_target_system);
-    _mav_put_uint8_t(buf, 67, log_level);
-    _mav_put_uint8_t(buf, 68, dynamic_anchor_count);
-    _mav_put_int32_t_array(buf, 8, dynamic_anchor_x_mm, 4);
-    _mav_put_int32_t_array(buf, 24, dynamic_anchor_y_mm, 4);
-    _mav_put_int32_t_array(buf, 40, dynamic_anchor_z_mm, 4);
-    _mav_put_uint8_t_array(buf, 69, dynamic_anchor_id, 4);
-    _mav_put_uint8_t_array(buf, 73, ip, 4);
-    _mav_put_uint8_t_array(buf, 77, mac, 6);
-    _mav_put_char_array(buf, 83, device_type, 16);
-    _mav_put_char_array(buf, 99, short_addr, 8);
-    _mav_put_char_array(buf, 107, firmware_version, 16);
+    _mav_put_uint16_t(buf, 104, avg_rate_chz);
+    _mav_put_uint16_t(buf, 106, min_rate_chz);
+    _mav_put_uint16_t(buf, 108, max_rate_chz);
+    _mav_put_uint16_t(buf, 110, log_udp_port);
+    _mav_put_uint8_t(buf, 112, role);
+    _mav_put_uint8_t(buf, 113, anchors_seen);
+    _mav_put_uint8_t(buf, 114, mavlink_target_system);
+    _mav_put_uint8_t(buf, 115, log_level);
+    _mav_put_uint8_t(buf, 116, dynamic_anchor_count);
+    _mav_put_int32_t_array(buf, 8, dynamic_anchor_x_mm, 8);
+    _mav_put_int32_t_array(buf, 40, dynamic_anchor_y_mm, 8);
+    _mav_put_int32_t_array(buf, 72, dynamic_anchor_z_mm, 8);
+    _mav_put_uint8_t_array(buf, 117, dynamic_anchor_id, 8);
+    _mav_put_uint8_t_array(buf, 125, ip, 4);
+    _mav_put_uint8_t_array(buf, 129, mac, 6);
+    _mav_put_char_array(buf, 135, device_type, 16);
+    _mav_put_char_array(buf, 151, short_addr, 8);
+    _mav_put_char_array(buf, 159, firmware_version, 16);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_RTLS_DEVICE_STATUS_LEN);
 #else
     mavlink_rtls_device_status_t packet;
@@ -339,10 +339,10 @@ static inline uint16_t mavlink_msg_rtls_device_status_pack_chan(uint8_t system_i
     packet.mavlink_target_system = mavlink_target_system;
     packet.log_level = log_level;
     packet.dynamic_anchor_count = dynamic_anchor_count;
-    mav_array_memcpy(packet.dynamic_anchor_x_mm, dynamic_anchor_x_mm, sizeof(int32_t)*4);
-    mav_array_memcpy(packet.dynamic_anchor_y_mm, dynamic_anchor_y_mm, sizeof(int32_t)*4);
-    mav_array_memcpy(packet.dynamic_anchor_z_mm, dynamic_anchor_z_mm, sizeof(int32_t)*4);
-    mav_array_memcpy(packet.dynamic_anchor_id, dynamic_anchor_id, 4);
+    mav_array_memcpy(packet.dynamic_anchor_x_mm, dynamic_anchor_x_mm, sizeof(int32_t)*8);
+    mav_array_memcpy(packet.dynamic_anchor_y_mm, dynamic_anchor_y_mm, sizeof(int32_t)*8);
+    mav_array_memcpy(packet.dynamic_anchor_z_mm, dynamic_anchor_z_mm, sizeof(int32_t)*8);
+    mav_array_memcpy(packet.dynamic_anchor_id, dynamic_anchor_id, 8);
     mav_array_memcpy(packet.ip, ip, 4);
     mav_array_memcpy(packet.mac, mac, 6);
     mav_array_memcpy(packet.device_type, device_type, 16);
@@ -429,24 +429,24 @@ static inline void mavlink_msg_rtls_device_status_send(mavlink_channel_t chan, u
     char buf[MAVLINK_MSG_ID_RTLS_DEVICE_STATUS_LEN];
     _mav_put_uint32_t(buf, 0, time_boot_ms);
     _mav_put_uint32_t(buf, 4, flags);
-    _mav_put_uint16_t(buf, 56, avg_rate_chz);
-    _mav_put_uint16_t(buf, 58, min_rate_chz);
-    _mav_put_uint16_t(buf, 60, max_rate_chz);
-    _mav_put_uint16_t(buf, 62, log_udp_port);
-    _mav_put_uint8_t(buf, 64, role);
-    _mav_put_uint8_t(buf, 65, anchors_seen);
-    _mav_put_uint8_t(buf, 66, mavlink_target_system);
-    _mav_put_uint8_t(buf, 67, log_level);
-    _mav_put_uint8_t(buf, 68, dynamic_anchor_count);
-    _mav_put_int32_t_array(buf, 8, dynamic_anchor_x_mm, 4);
-    _mav_put_int32_t_array(buf, 24, dynamic_anchor_y_mm, 4);
-    _mav_put_int32_t_array(buf, 40, dynamic_anchor_z_mm, 4);
-    _mav_put_uint8_t_array(buf, 69, dynamic_anchor_id, 4);
-    _mav_put_uint8_t_array(buf, 73, ip, 4);
-    _mav_put_uint8_t_array(buf, 77, mac, 6);
-    _mav_put_char_array(buf, 83, device_type, 16);
-    _mav_put_char_array(buf, 99, short_addr, 8);
-    _mav_put_char_array(buf, 107, firmware_version, 16);
+    _mav_put_uint16_t(buf, 104, avg_rate_chz);
+    _mav_put_uint16_t(buf, 106, min_rate_chz);
+    _mav_put_uint16_t(buf, 108, max_rate_chz);
+    _mav_put_uint16_t(buf, 110, log_udp_port);
+    _mav_put_uint8_t(buf, 112, role);
+    _mav_put_uint8_t(buf, 113, anchors_seen);
+    _mav_put_uint8_t(buf, 114, mavlink_target_system);
+    _mav_put_uint8_t(buf, 115, log_level);
+    _mav_put_uint8_t(buf, 116, dynamic_anchor_count);
+    _mav_put_int32_t_array(buf, 8, dynamic_anchor_x_mm, 8);
+    _mav_put_int32_t_array(buf, 40, dynamic_anchor_y_mm, 8);
+    _mav_put_int32_t_array(buf, 72, dynamic_anchor_z_mm, 8);
+    _mav_put_uint8_t_array(buf, 117, dynamic_anchor_id, 8);
+    _mav_put_uint8_t_array(buf, 125, ip, 4);
+    _mav_put_uint8_t_array(buf, 129, mac, 6);
+    _mav_put_char_array(buf, 135, device_type, 16);
+    _mav_put_char_array(buf, 151, short_addr, 8);
+    _mav_put_char_array(buf, 159, firmware_version, 16);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_RTLS_DEVICE_STATUS, buf, MAVLINK_MSG_ID_RTLS_DEVICE_STATUS_MIN_LEN, MAVLINK_MSG_ID_RTLS_DEVICE_STATUS_LEN, MAVLINK_MSG_ID_RTLS_DEVICE_STATUS_CRC);
 #else
     mavlink_rtls_device_status_t packet;
@@ -461,10 +461,10 @@ static inline void mavlink_msg_rtls_device_status_send(mavlink_channel_t chan, u
     packet.mavlink_target_system = mavlink_target_system;
     packet.log_level = log_level;
     packet.dynamic_anchor_count = dynamic_anchor_count;
-    mav_array_memcpy(packet.dynamic_anchor_x_mm, dynamic_anchor_x_mm, sizeof(int32_t)*4);
-    mav_array_memcpy(packet.dynamic_anchor_y_mm, dynamic_anchor_y_mm, sizeof(int32_t)*4);
-    mav_array_memcpy(packet.dynamic_anchor_z_mm, dynamic_anchor_z_mm, sizeof(int32_t)*4);
-    mav_array_memcpy(packet.dynamic_anchor_id, dynamic_anchor_id, 4);
+    mav_array_memcpy(packet.dynamic_anchor_x_mm, dynamic_anchor_x_mm, sizeof(int32_t)*8);
+    mav_array_memcpy(packet.dynamic_anchor_y_mm, dynamic_anchor_y_mm, sizeof(int32_t)*8);
+    mav_array_memcpy(packet.dynamic_anchor_z_mm, dynamic_anchor_z_mm, sizeof(int32_t)*8);
+    mav_array_memcpy(packet.dynamic_anchor_id, dynamic_anchor_id, 8);
     mav_array_memcpy(packet.ip, ip, 4);
     mav_array_memcpy(packet.mac, mac, 6);
     mav_array_memcpy(packet.device_type, device_type, 16);
@@ -502,24 +502,24 @@ static inline void mavlink_msg_rtls_device_status_send_buf(mavlink_message_t *ms
     char *buf = (char *)msgbuf;
     _mav_put_uint32_t(buf, 0, time_boot_ms);
     _mav_put_uint32_t(buf, 4, flags);
-    _mav_put_uint16_t(buf, 56, avg_rate_chz);
-    _mav_put_uint16_t(buf, 58, min_rate_chz);
-    _mav_put_uint16_t(buf, 60, max_rate_chz);
-    _mav_put_uint16_t(buf, 62, log_udp_port);
-    _mav_put_uint8_t(buf, 64, role);
-    _mav_put_uint8_t(buf, 65, anchors_seen);
-    _mav_put_uint8_t(buf, 66, mavlink_target_system);
-    _mav_put_uint8_t(buf, 67, log_level);
-    _mav_put_uint8_t(buf, 68, dynamic_anchor_count);
-    _mav_put_int32_t_array(buf, 8, dynamic_anchor_x_mm, 4);
-    _mav_put_int32_t_array(buf, 24, dynamic_anchor_y_mm, 4);
-    _mav_put_int32_t_array(buf, 40, dynamic_anchor_z_mm, 4);
-    _mav_put_uint8_t_array(buf, 69, dynamic_anchor_id, 4);
-    _mav_put_uint8_t_array(buf, 73, ip, 4);
-    _mav_put_uint8_t_array(buf, 77, mac, 6);
-    _mav_put_char_array(buf, 83, device_type, 16);
-    _mav_put_char_array(buf, 99, short_addr, 8);
-    _mav_put_char_array(buf, 107, firmware_version, 16);
+    _mav_put_uint16_t(buf, 104, avg_rate_chz);
+    _mav_put_uint16_t(buf, 106, min_rate_chz);
+    _mav_put_uint16_t(buf, 108, max_rate_chz);
+    _mav_put_uint16_t(buf, 110, log_udp_port);
+    _mav_put_uint8_t(buf, 112, role);
+    _mav_put_uint8_t(buf, 113, anchors_seen);
+    _mav_put_uint8_t(buf, 114, mavlink_target_system);
+    _mav_put_uint8_t(buf, 115, log_level);
+    _mav_put_uint8_t(buf, 116, dynamic_anchor_count);
+    _mav_put_int32_t_array(buf, 8, dynamic_anchor_x_mm, 8);
+    _mav_put_int32_t_array(buf, 40, dynamic_anchor_y_mm, 8);
+    _mav_put_int32_t_array(buf, 72, dynamic_anchor_z_mm, 8);
+    _mav_put_uint8_t_array(buf, 117, dynamic_anchor_id, 8);
+    _mav_put_uint8_t_array(buf, 125, ip, 4);
+    _mav_put_uint8_t_array(buf, 129, mac, 6);
+    _mav_put_char_array(buf, 135, device_type, 16);
+    _mav_put_char_array(buf, 151, short_addr, 8);
+    _mav_put_char_array(buf, 159, firmware_version, 16);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_RTLS_DEVICE_STATUS, buf, MAVLINK_MSG_ID_RTLS_DEVICE_STATUS_MIN_LEN, MAVLINK_MSG_ID_RTLS_DEVICE_STATUS_LEN, MAVLINK_MSG_ID_RTLS_DEVICE_STATUS_CRC);
 #else
     mavlink_rtls_device_status_t *packet = (mavlink_rtls_device_status_t *)msgbuf;
@@ -534,10 +534,10 @@ static inline void mavlink_msg_rtls_device_status_send_buf(mavlink_message_t *ms
     packet->mavlink_target_system = mavlink_target_system;
     packet->log_level = log_level;
     packet->dynamic_anchor_count = dynamic_anchor_count;
-    mav_array_memcpy(packet->dynamic_anchor_x_mm, dynamic_anchor_x_mm, sizeof(int32_t)*4);
-    mav_array_memcpy(packet->dynamic_anchor_y_mm, dynamic_anchor_y_mm, sizeof(int32_t)*4);
-    mav_array_memcpy(packet->dynamic_anchor_z_mm, dynamic_anchor_z_mm, sizeof(int32_t)*4);
-    mav_array_memcpy(packet->dynamic_anchor_id, dynamic_anchor_id, 4);
+    mav_array_memcpy(packet->dynamic_anchor_x_mm, dynamic_anchor_x_mm, sizeof(int32_t)*8);
+    mav_array_memcpy(packet->dynamic_anchor_y_mm, dynamic_anchor_y_mm, sizeof(int32_t)*8);
+    mav_array_memcpy(packet->dynamic_anchor_z_mm, dynamic_anchor_z_mm, sizeof(int32_t)*8);
+    mav_array_memcpy(packet->dynamic_anchor_id, dynamic_anchor_id, 8);
     mav_array_memcpy(packet->ip, ip, 4);
     mav_array_memcpy(packet->mac, mac, 6);
     mav_array_memcpy(packet->device_type, device_type, 16);
@@ -580,7 +580,7 @@ static inline uint32_t mavlink_msg_rtls_device_status_get_flags(const mavlink_me
  */
 static inline uint16_t mavlink_msg_rtls_device_status_get_avg_rate_chz(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint16_t(msg,  56);
+    return _MAV_RETURN_uint16_t(msg,  104);
 }
 
 /**
@@ -590,7 +590,7 @@ static inline uint16_t mavlink_msg_rtls_device_status_get_avg_rate_chz(const mav
  */
 static inline uint16_t mavlink_msg_rtls_device_status_get_min_rate_chz(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint16_t(msg,  58);
+    return _MAV_RETURN_uint16_t(msg,  106);
 }
 
 /**
@@ -600,7 +600,7 @@ static inline uint16_t mavlink_msg_rtls_device_status_get_min_rate_chz(const mav
  */
 static inline uint16_t mavlink_msg_rtls_device_status_get_max_rate_chz(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint16_t(msg,  60);
+    return _MAV_RETURN_uint16_t(msg,  108);
 }
 
 /**
@@ -610,7 +610,7 @@ static inline uint16_t mavlink_msg_rtls_device_status_get_max_rate_chz(const mav
  */
 static inline uint16_t mavlink_msg_rtls_device_status_get_log_udp_port(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint16_t(msg,  62);
+    return _MAV_RETURN_uint16_t(msg,  110);
 }
 
 /**
@@ -620,7 +620,7 @@ static inline uint16_t mavlink_msg_rtls_device_status_get_log_udp_port(const mav
  */
 static inline uint8_t mavlink_msg_rtls_device_status_get_role(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint8_t(msg,  64);
+    return _MAV_RETURN_uint8_t(msg,  112);
 }
 
 /**
@@ -630,7 +630,7 @@ static inline uint8_t mavlink_msg_rtls_device_status_get_role(const mavlink_mess
  */
 static inline uint8_t mavlink_msg_rtls_device_status_get_anchors_seen(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint8_t(msg,  65);
+    return _MAV_RETURN_uint8_t(msg,  113);
 }
 
 /**
@@ -640,7 +640,7 @@ static inline uint8_t mavlink_msg_rtls_device_status_get_anchors_seen(const mavl
  */
 static inline uint8_t mavlink_msg_rtls_device_status_get_mavlink_target_system(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint8_t(msg,  66);
+    return _MAV_RETURN_uint8_t(msg,  114);
 }
 
 /**
@@ -650,7 +650,7 @@ static inline uint8_t mavlink_msg_rtls_device_status_get_mavlink_target_system(c
  */
 static inline uint8_t mavlink_msg_rtls_device_status_get_log_level(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint8_t(msg,  67);
+    return _MAV_RETURN_uint8_t(msg,  115);
 }
 
 /**
@@ -660,7 +660,7 @@ static inline uint8_t mavlink_msg_rtls_device_status_get_log_level(const mavlink
  */
 static inline uint8_t mavlink_msg_rtls_device_status_get_dynamic_anchor_count(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint8_t(msg,  68);
+    return _MAV_RETURN_uint8_t(msg,  116);
 }
 
 /**
@@ -670,7 +670,7 @@ static inline uint8_t mavlink_msg_rtls_device_status_get_dynamic_anchor_count(co
  */
 static inline uint16_t mavlink_msg_rtls_device_status_get_dynamic_anchor_id(const mavlink_message_t* msg, uint8_t *dynamic_anchor_id)
 {
-    return _MAV_RETURN_uint8_t_array(msg, dynamic_anchor_id, 4,  69);
+    return _MAV_RETURN_uint8_t_array(msg, dynamic_anchor_id, 8,  117);
 }
 
 /**
@@ -680,7 +680,7 @@ static inline uint16_t mavlink_msg_rtls_device_status_get_dynamic_anchor_id(cons
  */
 static inline uint16_t mavlink_msg_rtls_device_status_get_dynamic_anchor_x_mm(const mavlink_message_t* msg, int32_t *dynamic_anchor_x_mm)
 {
-    return _MAV_RETURN_int32_t_array(msg, dynamic_anchor_x_mm, 4,  8);
+    return _MAV_RETURN_int32_t_array(msg, dynamic_anchor_x_mm, 8,  8);
 }
 
 /**
@@ -690,7 +690,7 @@ static inline uint16_t mavlink_msg_rtls_device_status_get_dynamic_anchor_x_mm(co
  */
 static inline uint16_t mavlink_msg_rtls_device_status_get_dynamic_anchor_y_mm(const mavlink_message_t* msg, int32_t *dynamic_anchor_y_mm)
 {
-    return _MAV_RETURN_int32_t_array(msg, dynamic_anchor_y_mm, 4,  24);
+    return _MAV_RETURN_int32_t_array(msg, dynamic_anchor_y_mm, 8,  40);
 }
 
 /**
@@ -700,7 +700,7 @@ static inline uint16_t mavlink_msg_rtls_device_status_get_dynamic_anchor_y_mm(co
  */
 static inline uint16_t mavlink_msg_rtls_device_status_get_dynamic_anchor_z_mm(const mavlink_message_t* msg, int32_t *dynamic_anchor_z_mm)
 {
-    return _MAV_RETURN_int32_t_array(msg, dynamic_anchor_z_mm, 4,  40);
+    return _MAV_RETURN_int32_t_array(msg, dynamic_anchor_z_mm, 8,  72);
 }
 
 /**
@@ -710,7 +710,7 @@ static inline uint16_t mavlink_msg_rtls_device_status_get_dynamic_anchor_z_mm(co
  */
 static inline uint16_t mavlink_msg_rtls_device_status_get_ip(const mavlink_message_t* msg, uint8_t *ip)
 {
-    return _MAV_RETURN_uint8_t_array(msg, ip, 4,  73);
+    return _MAV_RETURN_uint8_t_array(msg, ip, 4,  125);
 }
 
 /**
@@ -720,7 +720,7 @@ static inline uint16_t mavlink_msg_rtls_device_status_get_ip(const mavlink_messa
  */
 static inline uint16_t mavlink_msg_rtls_device_status_get_mac(const mavlink_message_t* msg, uint8_t *mac)
 {
-    return _MAV_RETURN_uint8_t_array(msg, mac, 6,  77);
+    return _MAV_RETURN_uint8_t_array(msg, mac, 6,  129);
 }
 
 /**
@@ -730,7 +730,7 @@ static inline uint16_t mavlink_msg_rtls_device_status_get_mac(const mavlink_mess
  */
 static inline uint16_t mavlink_msg_rtls_device_status_get_device_type(const mavlink_message_t* msg, char *device_type)
 {
-    return _MAV_RETURN_char_array(msg, device_type, 16,  83);
+    return _MAV_RETURN_char_array(msg, device_type, 16,  135);
 }
 
 /**
@@ -740,7 +740,7 @@ static inline uint16_t mavlink_msg_rtls_device_status_get_device_type(const mavl
  */
 static inline uint16_t mavlink_msg_rtls_device_status_get_short_addr(const mavlink_message_t* msg, char *short_addr)
 {
-    return _MAV_RETURN_char_array(msg, short_addr, 8,  99);
+    return _MAV_RETURN_char_array(msg, short_addr, 8,  151);
 }
 
 /**
@@ -750,7 +750,7 @@ static inline uint16_t mavlink_msg_rtls_device_status_get_short_addr(const mavli
  */
 static inline uint16_t mavlink_msg_rtls_device_status_get_firmware_version(const mavlink_message_t* msg, char *firmware_version)
 {
-    return _MAV_RETURN_char_array(msg, firmware_version, 16,  107);
+    return _MAV_RETURN_char_array(msg, firmware_version, 16,  159);
 }
 
 /**

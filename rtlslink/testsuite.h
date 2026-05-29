@@ -363,10 +363,10 @@ static void mavlink_test_rtls_device_status(uint8_t system_id, uint8_t component
         packet1.log_level = packet_in.log_level;
         packet1.dynamic_anchor_count = packet_in.dynamic_anchor_count;
         
-        mav_array_memcpy(packet1.dynamic_anchor_x_mm, packet_in.dynamic_anchor_x_mm, sizeof(int32_t)*4);
-        mav_array_memcpy(packet1.dynamic_anchor_y_mm, packet_in.dynamic_anchor_y_mm, sizeof(int32_t)*4);
-        mav_array_memcpy(packet1.dynamic_anchor_z_mm, packet_in.dynamic_anchor_z_mm, sizeof(int32_t)*4);
-        mav_array_memcpy(packet1.dynamic_anchor_id, packet_in.dynamic_anchor_id, sizeof(uint8_t)*4);
+        mav_array_memcpy(packet1.dynamic_anchor_x_mm, packet_in.dynamic_anchor_x_mm, sizeof(int32_t)*8);
+        mav_array_memcpy(packet1.dynamic_anchor_y_mm, packet_in.dynamic_anchor_y_mm, sizeof(int32_t)*8);
+        mav_array_memcpy(packet1.dynamic_anchor_z_mm, packet_in.dynamic_anchor_z_mm, sizeof(int32_t)*8);
+        mav_array_memcpy(packet1.dynamic_anchor_id, packet_in.dynamic_anchor_id, sizeof(uint8_t)*8);
         mav_array_memcpy(packet1.ip, packet_in.ip, sizeof(uint8_t)*4);
         mav_array_memcpy(packet1.mac, packet_in.mac, sizeof(uint8_t)*6);
         mav_array_memcpy(packet1.device_type, packet_in.device_type, sizeof(char)*16);
