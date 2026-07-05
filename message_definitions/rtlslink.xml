@@ -23,6 +23,7 @@
       <entry value="64" name="RTLS_DEVICE_STATUS_FLAG_LOG_SERIAL_ENABLED"/>
       <entry value="128" name="RTLS_DEVICE_STATUS_FLAG_LOG_UDP_ENABLED"/>
       <entry value="256" name="RTLS_DEVICE_STATUS_FLAG_DYNAMIC_ANCHORS_ENABLED"/>
+      <entry value="512" name="RTLS_DEVICE_STATUS_FLAG_SLEEPING"/>
     </enum>
 
     <enum name="RTLS_COMMAND">
@@ -50,6 +51,8 @@
       <entry value="20" name="RTLS_COMMAND_TDOA_ANCHOR_MODEL_EXPORT"/>
       <entry value="21" name="RTLS_COMMAND_TDOA_ESTIMATOR_STATS_RESET"/>
       <entry value="22" name="RTLS_COMMAND_TDOA_ESTIMATOR_STATUS"/>
+      <entry value="23" name="RTLS_COMMAND_SLEEP"/>
+      <entry value="24" name="RTLS_COMMAND_WAKE"/>
     </enum>
 
     <enum name="RTLS_RESULT">
@@ -60,6 +63,7 @@
       <entry value="3" name="RTLS_RESULT_INVALID_MODE"/>
       <entry value="4" name="RTLS_RESULT_NOT_FOUND"/>
       <entry value="5" name="RTLS_RESULT_INVALID_ARGUMENT"/>
+      <entry value="6" name="RTLS_RESULT_DENIED"/>
     </enum>
 
     <enum name="RTLS_PAYLOAD_TYPE">
